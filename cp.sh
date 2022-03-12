@@ -8,5 +8,8 @@ n=1
 while read line 
 do
         echo "linenum(host): $n:$line"
-        curl --insecure --user "$USERNAME:$PASSWORD" -T ./cp.sh  "sftp://$line/home/$USERNAME/always_run" --ftp-create-dirs
+        for filename in .
+        do 
+            curl --insecure --user "$USERNAME:$PASSWORD" -o $filename  "sftp://$line/home/$USERNAME/always_run/$filename" --ftp-create-dirs
+        done
 done < $file_hosts

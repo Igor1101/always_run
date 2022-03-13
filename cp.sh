@@ -17,6 +17,6 @@ do
              --ftp-create-dirs
     done
     # run init
-    sshpass -p $PASSWORD ssh $USERNAME@$host \
-        'cd always_run; ./init.sh'
+    sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@$host \
+        'cd always_run;bash ./init.sh'
 done < $file_hosts

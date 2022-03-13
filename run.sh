@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "running always script 'cp_run.sh' "
+echo "running always script 'user_code.sh' "
 i=0
 while true
 do

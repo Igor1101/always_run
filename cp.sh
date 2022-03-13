@@ -19,7 +19,7 @@ do
              --ftp-create-dirs
     done
     # run init
-    !sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
+    ! sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
         -o UserKnownHostsFile=/dev/null \
         $USERNAME@$host \
         $SSH_COMMAND

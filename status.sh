@@ -13,7 +13,7 @@ do
     host="$line"
     echo "linenum(host): $n:$host:"
     # show session for each host
-    !sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
+    ! sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
         -o UserKnownHostsFile=/dev/null \
         $USERNAME@$host \
         $SSH_COMMAND 2> /dev/null\

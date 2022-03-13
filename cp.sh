@@ -1,6 +1,8 @@
 #!/bin/sh
+# please don`t edit these:
 USERNAME=$1
 PASSWORD=$2
+SSH_COMMAND='cd always_run;bash ./init.sh'
 # file_hosts data format:
 # X.X.X.X
 file_hosts='hosts.txt'
@@ -17,6 +19,8 @@ do
              --ftp-create-dirs
     done
     # run init
-    sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@$host \
-        'cd always_run;bash ./init.sh'
+    sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
+        -o UserKnownHostsFile=/dev/null \
+        $USERNAME@$host \
+        $SSH_COMMAND
 done < $file_hosts

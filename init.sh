@@ -1,3 +1,4 @@
 #!/bin/sh
-tmux kill-session -t "always_run"
-tmux new-session -d -s "always_run"  bash run.sh
+source conf.sh
+tmux kill-session -t $TMUX_SESSION
+tmux new-session -d -s $TMUX_SESSION  bash run.sh

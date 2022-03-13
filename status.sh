@@ -7,12 +7,13 @@ SSH_COMMAND='tmux ls'
 # file_hosts data format:
 # X.X.X.X
 file_hosts='hosts.txt'
-while read line 
+n=1
+while IFS= read -r line
 do
-    host=$line
+    host="$line"
     echo "linenum(host): $n:$host:"
     # show session for each host
-    sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
+    !sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
         -o UserKnownHostsFile=/dev/null \
         $USERNAME@$host \
         $SSH_COMMAND 2> /dev/null\
@@ -22,4 +23,5 @@ do
     else 
         echo "SESSION DOES NOT RUN"  
     fi
-done < $file_hosts
+    ((n=n+1))
+done < "$file_hosts"

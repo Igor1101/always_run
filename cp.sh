@@ -7,7 +7,7 @@ SSH_COMMAND='cd always_run;bash ./init.sh'
 # X.X.X.X
 file_hosts='hosts.txt'
 n=1
-while read line 
+while IFS= read -r  line     
 do
     host=$line
     echo "linenum(host): $n:$host"
@@ -19,8 +19,9 @@ do
              --ftp-create-dirs
     done
     # run init
-    sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
+    !sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no \
         -o UserKnownHostsFile=/dev/null \
         $USERNAME@$host \
         $SSH_COMMAND
-done < $file_hosts
+    ((n=n+1))
+done < "$file_hosts"

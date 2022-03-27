@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 source conf.sh
 # please don`t edit these:
 USERNAME=$1

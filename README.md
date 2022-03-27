@@ -19,6 +19,9 @@ tmux, openssh-client, sshpass, bash, curl
 |status.sh    | відобразить статус сесій на всіх серверах з файлу hosts.txt            |
 |killall.sh   | вимкне всі сесії даної задачі (tmux) на всіх серверах                  |
 |\*           | будь-які інші файли додані в дану директорію будуть також скопійовані  |
+|cpk.sh       | використовується для розповсюдження, оновлення всіх файлів на серверах |
+|statusk.sh   | відобразить статус сесій на всіх серверах з файлу hosts.txt            |
+|killallk.sh  | вимкне всі сесії даної задачі (tmux) на всіх серверах                  |
 
 ### Інструкція щодо запуску
 
@@ -27,6 +30,7 @@ tmux, openssh-client, sshpass, bash, curl
 useradd user123 -m -s /bin/bash -G sudo .....
 passwd user123....
 ```
+Також можна використати ключі ssh для автентифікації. 
 Вписати у файл hosts.txt адреси усіх серверів(X.X.X.X) кожна з нового рядочка. 
 Наприклад:
 ```
@@ -47,6 +51,16 @@ passwd user123....
 ```
 bash cp.sh user123 password123
 ```
+те ж саме з ssh ключем:
+```
+bash cpk.sh user123 /path/to/key
+```
+те ж саме з ssh ключем, шлях до якого попередньо вами записаний у файл conf.sh у парамерт 
+DEFAULT_KEY_PATH
+```
+bash cpk.sh user123 
+```
+
 
 Додатково існують такі опції:
 
@@ -54,11 +68,15 @@ bash cp.sh user123 password123
 
 ```
 bash killall.sh user123 password123
+bash killallk.sh user123 /path/to/key
+bash killallk.sh user123 
 ```
 
 статус(стан роботи tmux сесій):
 ```
 bash status.sh user123 password123
+bash statusk.sh user123 /path/to/key
+bash statusk.sh user123 
 ```
 
 Зверніть увагу, що після виклику і успішного виконання команди cp.sh можна керувати серверами за допомогою цих команд зайшовши на будь-який з них.
